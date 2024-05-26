@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Feedback;
 use App\Models\Responden;
-use App\Models\Village;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -39,16 +38,13 @@ function getRespondenDataExport($request)
         ->orWhere('gender', 'like', "%$searchTerm%")
         ->orWhere('age', 'like', "%$searchTerm%")
         ->orWhere('education', 'like', "%$searchTerm%")
-        ->orWhere('job', 'like', "%$searchTerm%")
-        ->orWhere('village_id', 'like', "%$searchTerm%");
+        ->orWhere('job', 'like', "%$searchTerm%");
     });
   }
 
   if (isset($request->age)) {
-    if ($request->age == 'Anak-anak') {
-      $age = [0, 12];
-    } elseif ($request->age == 'Remaja') {
-      $age = [13, 19];
+   if ($request->age == 'Remaja') {
+      $age = [17, 19];
     } elseif ($request->age == 'Dewasa') {
       $age = [20, 59];
     } elseif ($request->age == 'Lansia') {
@@ -69,9 +65,6 @@ function getRespondenDataExport($request)
     $query->where('job', $request->job);
   }
 
-  if (isset($request->village)) {
-    $query->where('village_id', $request->village);
-  }
 
   $respondens = $query->get();
 
@@ -89,10 +82,10 @@ function getRespondenDataExport($request)
   $chartUmurConfig = '{
             "type": "bar",
             "data": {
-              "labels": ["Anak-anak (0-12)", "Remaja (13-19)", "Dewasa (20-59)", "Lansia (>= 60)"],
+              "labels": [ "Remaja (17-19)", "Dewasa (20-59)", "Lansia (>= 60)"],
               "datasets": [{
                 "label": "Umur",
-                "data": [' . $respondens->whereBetween('age', [0, 12])->count() . ', ' . $respondens->whereBetween('age', [13, 19])->count() . ', ' . $respondens->whereBetween('age', [20, 69])->count() . ', ' . $respondens->where('age', '>=', 60)->count() . ']
+                "data": [ ' . $respondens->whereBetween('age', [17, 19])->count() . ', ' . $respondens->whereBetween('age', [20, 69])->count() . ', ' . $respondens->where('age', '>=', 60)->count() . ']
               }]
             }
           }';
@@ -138,31 +131,11 @@ function getRespondenDataExport($request)
               }
             }';
 
-  $labels = [];
-  $data = [];
-  $villages = Village::all();
-  foreach ($villages as $key => $village) {
-    $labels[$key] = '"' . $village->village . '"';
-    $data[$key] = $respondens->where('village_id', $village->id)->count();
-  }
-
-  $chartDesaConfig = '{
-                "type": "bar",
-                "data": {
-                  "labels": [' . implode(', ', $labels) . '],
-                  "datasets": [{
-                    "label": "Desa",
-                    "data": [' . implode(', ', $data) . ']
-                  }]
-                }
-              }';
-
   return [
     'chartJKConfig' => $chartJKConfig,
     'chartUmurConfig' => $chartUmurConfig,
     'chartPendidikanConfig' => $chartPendidikanConfig,
     'chartPekerjaanConfig' => $chartPekerjaanConfig,
-    'chartDesaConfig' => $chartDesaConfig
   ];
 }
 
@@ -178,7 +151,7 @@ class ExportController extends Controller
 
     extract(getRespondenDataExport($request));
 
-    $Pdf = Pdf::loadView('export.responden', compact('chartJKConfig', 'chartUmurConfig', 'chartPendidikanConfig', 'chartPekerjaanConfig', 'chartDesaConfig'));
+    $Pdf = Pdf::loadView('export.responden', compact('chartJKConfig', 'chartUmurConfig', 'chartPendidikanConfig', 'chartPekerjaanConfig'));
 
     return $Pdf->download('Laporan Responden.Pdf');
   }
@@ -193,7 +166,7 @@ class ExportController extends Controller
 
     extract(getRespondenDataExport($request));
 
-    $Pdf = Pdf::loadView('export.responden', compact('chartJKConfig', 'chartUmurConfig', 'chartPendidikanConfig', 'chartPekerjaanConfig', 'chartDesaConfig'));
+    $Pdf = Pdf::loadView('export.responden', compact('chartJKConfig', 'chartUmurConfig', 'chartPendidikanConfig', 'chartPekerjaanConfig'));
     return $Pdf->stream();
   }
 
@@ -225,16 +198,13 @@ class ExportController extends Controller
           ->orWhere('gender', 'like', "%$searchTerm%")
           ->orWhere('age', 'like', "%$searchTerm%")
           ->orWhere('education', 'like', "%$searchTerm%")
-          ->orWhere('job', 'like', "%$searchTerm%")
-          ->orWhere('village', 'like', "%$searchTerm%");
+          ->orWhere('job', 'like', "%$searchTerm%");
       });
     }
 
     if (isset($request->age)) {
-      if ($request->age == 'Anak-anak') {
-        $age = [0, 12];
-      } elseif ($request->age == 'Remaja') {
-        $age = [13, 19];
+      if ($request->age == 'Remaja') {
+        $age = [17, 19];
       } elseif ($request->age == 'Dewasa') {
         $age = [20, 59];
       } elseif ($request->age == 'Lansia') {
@@ -253,10 +223,6 @@ class ExportController extends Controller
 
     if (isset($request->job)) {
       $query->where('job', $request->job);
-    }
-
-    if (isset($request->village)) {
-      $query->where('village', $request->village);
     }
 
     $respondens = $query->latest()->paginate($request->per_page ?? 5);
@@ -329,9 +295,7 @@ class ExportController extends Controller
       $query->where('job', $request->job);
     }
 
-    if (isset($request->village)) {
-      $query->where('village', $request->village);
-    }
+    
 
     $respondens = $query->latest()->paginate($request->per_page ?? 5);
 

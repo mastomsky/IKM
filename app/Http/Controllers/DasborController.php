@@ -211,14 +211,13 @@ class DasborController extends Controller
 
         $dataGrafikUmur = (object) [
             'series' => [
-                (int) number_format(getPercentage($dataRespondens->whereBetween('age', [0, 12])->count(), $dataRespondens->count()), 2),
-                (int) number_format(getPercentage($dataRespondens->whereBetween('age', [13, 19])->count(), $dataRespondens->count()), 2),
+                (int) number_format(getPercentage($dataRespondens->whereBetween('age', [17, 19])->count(), $dataRespondens->count()), 2),
                 (int) number_format(getPercentage($dataRespondens->whereBetween('age', [20, 59])->count(), $dataRespondens->count()), 2),
                 (int) number_format(getPercentage($dataRespondens->where('age', '>=', 60)->count(), $dataRespondens->count()), 2)
             ],
-            'labels' => ['Anak-anak (0-12)', 'Remaja (13-19)', 'Dewasa (20-59)', 'Lansia (>= 60)'],
+            'labels' => [ 'Remaja (17-19)', 'Dewasa (20-59)', 'Lansia (>= 60)'],
             'total' => $dataRespondens->count(),
-            'colors' => [$colors->red, $colors->orange, $colors->yellow, $colors->green]
+            'colors' => [$colors->orange, $colors->yellow, $colors->green]
         ];
 
         // Menghitung persentase responden berdasarkan pendidikan

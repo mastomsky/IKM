@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Responden;
-use App\Models\Village;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -37,16 +36,13 @@ class RespondenController extends Controller
                     ->orWhere('gender', 'like', "%$searchTerm%")
                     ->orWhere('age', 'like', "%$searchTerm%")
                     ->orWhere('education', 'like', "%$searchTerm%")
-                    ->orWhere('job', 'like', "%$searchTerm%")
-                    ->orWhere('village_id', 'like', "%$searchTerm%");
+                    ->orWhere('job', 'like', "%$searchTerm%");
             });
         }
 
         if (isset($request->age)) {
-            if ($request->age == 'Anak-anak') {
-                $age = [0, 12];
-            } elseif ($request->age == 'Remaja') {
-                $age = [13, 19];
+            if ($request->age == 'Remaja') {
+                $age = [17, 19];
             } elseif ($request->age == 'Dewasa') {
                 $age = [20, 59];
             } elseif ($request->age == 'Lansia') {
@@ -67,18 +63,24 @@ class RespondenController extends Controller
             $query->where('job', $request->job);
         }
 
-        if (isset($request->village)) {
-            $query->where('village_id', $request->village);
-        }
+     
 
         $respondens = $query->latest()->paginate($request->per_page ?? 5);
-        $villages = Village::all();
 
-        return view('pages.dashboard.responden.index', compact('respondens', 'villages'));
+        return view('pages.dashboard.responden.index', compact('respondens'));
     }
 
     public function show(Responden $responden)
     {
         return view('pages.dashboard.responden.show', compact('responden'));
+    }
+    public function update(Request $request,$id) {
+       
+        $responden = Responden::findOrFail($id);
+        $responden->update([
+            'created_at'         => $request->tgl_pengisian,
+            'updated_at'   => $request->tgl_pengisian,
+        ]);
+        return redirect()->back()->with(['success' => 'Data Berhasil Diubah!']);
     }
 }

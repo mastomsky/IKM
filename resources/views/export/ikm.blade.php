@@ -66,7 +66,7 @@
 		<table style="border-bottom: 1px solid black; width: 100%; text-align: center;">
 			<tr>
 				<td style="vertical-align: middle; width: 15%;">
-					<img src="{{ public_path('assets/logo.png') }}" alt="Logo">
+					<img src="{{ public_path('assets/logo.png') }}" alt="Logo" >
 				</td>
 				<td style="vertical-align: middle; line-height: 1.5;">
 					<div style="text-align: center;">
@@ -174,8 +174,7 @@
 					<td></td>
 					<td style="text-align: center; width: 40%;">
 						<div>Gresik, {{ now()->format('d/m/Y') }}</div>
-						<div style="margin-bottom: 50px;">Kasatlantas</div>
-						<div>Nama Kasatlantas</div>
+						<div style="margin-top: 50px;">KEPALA SATLANTAS</div>
 						<div></div>
 					</td>
 				</tr>

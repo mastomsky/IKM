@@ -5,7 +5,7 @@
 <section class="bg-bottom bg-no-repeat  dark:bg-gray-900" style="background-image: url({{ asset('assets/subtle-prism.svg') }}); height: calc(100vh - 115px);">
 	<div class="mx-auto grid h-full max-w-screen-lg rounded-xl border-2 bg-white px-4  shadow lg:h-auto lg:grid-cols-12 lg:gap-8 lg:py-12 xl:gap-0">
 		<div class="mr-auto md:pl-10 place-self-center text-center lg:col-span-7 lg:place-self-start lg:text-start">
-			<h1 class="mb-4 max-w-2xl text-4xl font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl" style="font-family: Georgia, 'Times New Roman', Times, serif">
+			<h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl" style="font-family: Georgia, 'Times New Roman', Times, serif">
 			Survey Kepuasan Masyarakat</h1>
 			<p class="mb-2">
 				ini bertujuan untuk mengukur tingkat kepuasan masyarakat terhadap pelayanan publik yang diberikan 
@@ -21,10 +21,9 @@
 		</div>
 		<div class="hidden lg:col-span-5 lg:mt-0 lg:flex">
 			<div class="dark:bg-gray-800">
-				<img src="{{ asset('/assets/foto-polri.jpg') }}" alt="" class="rounded-xl" width="350">
+				<img src="{{ asset('/assets/AKP-Derie.jpg') }}" alt="" class="rounded-xl" width="350">
 				{{-- <x-chart.donut :answers="$answers" /> --}}
 				<h5 class="mt-2 text-center uppercase text-gray-500 dark:text-gray-400 font-extrabold">KEPALA SATLANTAS</h5>
-				<h5 class="mt-2 text-center uppercase text-gray-500 dark:text-gray-400 font-extrabold">Nama Kasatlantas</h5>
 			</div>
 		</div>
 	</div>

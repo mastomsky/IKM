@@ -8,6 +8,10 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\KuesionerController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RespondenController;
+use App\Http\Controllers\UserController;
+use App\Models\User;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
@@ -17,10 +21,11 @@ Route::get('/auth/login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/auth/prosess', [AuthController::class, 'prosess'])->name('auth.prosess'); 
 Route::get('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-Route::middleware(['web', 'auth'])->prefix('dasbor')->group(function () {
-   Route::get('/', [DasborController::class, 'index'])->name('dasbor');
+Route::middleware(['web', 'auth'])->prefix('dashboard')->group(function () {
+   Route::get('/', [DasborController::class, 'index'])->name('dashboard');
    Route::resource('/kuesioner', KuesionerController::class)->names('kuesioner');
    Route::post('/kuesioner/checks', [KuesionerController::class, 'checks'])->name('kuesioner.checks');
+   // Route::post('/responden/update_tanggal', [RespondenController::class, 'update_tanggal'])->name('responden.update_tanggal');
    Route::resource('/responden', RespondenController::class)->names('responden');
    Route::get('/ikm', [DasborController::class, 'ikm'])->name('ikm.index');
    Route::get('/ikm/export/graph', [DasborController::class, 'ikm_export'])->name('ikm.export.graph');
@@ -29,6 +34,26 @@ Route::middleware(['web', 'auth'])->prefix('dasbor')->group(function () {
    Route::get('/ikm/preview/table', [DasborController::class, 'ikm_preview_table'])->name('ikm.preview.table');
    Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
    Route::get('/profil', [ProfilController::class, 'index'])->name('profil.index');
+   Route::resource('/user', UserController::class)->middleware('super');
+   Route::get('dasbor/user/delete/{id}', function (User $user, string $id) {
+      $id = Crypt::decrypt($id);
+      $data = $user->find($id);
+
+      $avatar = $data->avatar;
+        if ($data) {
+            if ($avatar != null || $avatar != '') {
+                $file = public_path('assets/user/' . $avatar);
+               File::delete($file);
+            }
+            $data->delete();
+            return redirect()->route('user.index')
+                ->withSuccess('User is updated successfully.');
+      } else {
+
+         return redirect()->route('user.index')
+         ->withErrors('User Not Found.');
+      }
+  });
    Route::post('/profil/update', [ProfilController::class, 'update'])->name('profil.update');
    Route::post('/auth/password', [AuthController::class, 'change_password'])->name('auth.change_password');
    Route::get('/laporan/responden/export/graph', [ExportController::class, 'responden_export'])->name('responden.export.graph');

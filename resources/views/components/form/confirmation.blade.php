@@ -13,7 +13,6 @@
 		<input type="hidden" name="age" value="{{ $data['age'] }}">
 		<input type="hidden" name="job" value="{{ $data['job'] }}">
 		<input type="hidden" name="education" value="{{ $data['education'] }}">
-		<input type="hidden" name="village" value="{{ $data['village'] }}">
 		@foreach ($kuesioner as $key => $item)
 			@php
 				$value = (object) [

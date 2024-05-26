@@ -1,35 +1,40 @@
 @php
 	$menus = [
 	    (object) [
-	        'name' => 'Dasbor',
-	        'link' => route('dasbor'),
+	        'name' => 'Dashboard',
+	        'link' => route('dashboard'),
 	        'icon' => 'chart-pie',
 	    ],
-	    // (object) [
-	    //     'name' => 'Kuesioner',
-	    //     'link' => route('kuesioner.index'),
-	    //     'icon' => 'document-duplicate',
-	    // ],
-		// (object) [
-		// 		'name' => 'Responden',
-		// 		'link' => route('responden.index'),
-		// 		'icon' => 'users',
-		// 	],
+	    (object) [
+	        'name' => 'Kuesioner',
+	        'link' => route('kuesioner.index'),
+	        'icon' => 'document-duplicate',
+	    ],
+		(object) [
+				'name' => 'Responden',
+				'link' => route('responden.index'),
+				'icon' => 'respond',
+			],
 	    (object) [
 	        'name' => 'IKM',
 	        'link' => route('ikm.index'),
 	        'icon' => 'star',
 	    ],
-	    // (object) [
-	    //     'name' => 'Kritik & Saran',
-	    //     'link' => route('feedback.index'),
-	    //     'icon' => 'envelope',
-	    // ],
-	    // (object) [
-	    //     'name' => 'Desa',
-	    //     'link' => route('village.index'),
-	    //     'icon' => 'map-pin',
-	    // ]
+	    (object) [
+	        'name' => 'Kritik & Saran',
+	        'link' => route('feedback.index'),
+	        'icon' => 'envelope',
+	    ],
+	    (object) [
+	        'name' => 'User',
+	        'link' => route('user.index'),
+	        'icon' => 'users',
+],
+	    (object) [
+	        'name' => 'Profil Website',
+	        'link' => route('user.index'),
+	        'icon' => 'setting',
+	    ]
 	];
 @endphp
 

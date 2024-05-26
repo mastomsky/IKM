@@ -109,8 +109,7 @@
 					<td></td>
 					<td style="text-align: center; width: 40%;">
 						<div>Gresik, {{ now()->format('d/m/Y') }}</div>
-						<div style="margin-bottom: 50px;">Kasatlantas</div>
-						<div>Nama Kasatlantas</div>
+						<div style="margin-top: 50px;">KEPALA SATLANTAS</div>
 						<div></div>
 					</td>
 				</tr>

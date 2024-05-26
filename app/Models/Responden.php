@@ -13,7 +13,7 @@ class Responden extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'gender', 'age', 'education', 'job', 'village_id'];
+    protected $fillable = ['name', 'gender', 'age', 'education', 'job','created_at','updated_at'];
 
     public function getRouteKeyName(): string
     {
@@ -38,8 +38,5 @@ class Responden extends Model
         return $this->hasOne(Feedback::class);
     }
 
-    public function village(): BelongsTo
-    {
-        return $this->belongsTo(Village::class);
-    }
+    
 }

@@ -119,11 +119,6 @@
 					<td>
 						<table>
 							<tr>
-								<th>Desa</th>
-								<td>:</td>
-								<td>{{ request('village') ?? 'Semua' }}</td>
-							</tr>
-							<tr>
 								<th>Pencarian</th>
 								<td>:</td>
 								<td>{{ request('search') }}</td>
@@ -142,7 +137,6 @@
 				<th>UMUR</th>
 				<th>PENDIDIKAN</th>
 				<th>PEKERJAAN</th>
-				<th>DESA</th>
 			</tr>
 			@foreach ($respondens as $responden)
 				<tr>
@@ -152,7 +146,6 @@
 					<td>{{ $responden->age }}</td>
 					<td>{{ $responden->education }}</td>
 					<td>{{ $responden->job }}</td>
-					<td>{{ $responden->village->village }}</td>
 				</tr>
 			@endforeach
 		</table>
@@ -162,8 +155,7 @@
 				<td></td>
 				<td style="text-align: center; width: 40%;">
 					<div>Gresik, {{ now()->format('d/m/Y') }}</div>
-					<div style="margin-bottom: 50px;">Kasatlantas</div>
-					<div>Nama Kasatlantas</div>
+					<div style="margin-top: 50px;">KEPALA SATLANTAS</div>
 					<div></div>
 				</td>
 			</tr>

@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer('age');
             $table->string('education');
             $table->string('job');
-            $table->foreignId('village_id')->constrained('villages')->onDelete('cascade');
             $table->timestamps();
         });
     }

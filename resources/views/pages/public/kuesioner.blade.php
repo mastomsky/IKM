@@ -90,7 +90,7 @@
 	<section class="bg-info dark:bg-gray-900" style="background-color: #405de6">
 		<div class="mx-auto flex flex-col space-y-5 max-w-screen-lg px-4 py-5">
 			@if ($step == 1)
-				<x-form.personal-info :genders="$genders" :educations="$educations" :jobs="$jobs" :total-kuesioner="$totalKuesioner" :villages="$villages" />
+				<x-form.personal-info :genders="$genders" :educations="$educations" :jobs="$jobs" :total-kuesioner="$totalKuesioner" />
 			@elseif ($step == 2)
 				<x-form.kuesioner :previous="$previous" :step="$step" :question="$question" :total-kuesioner="$totalKuesioner" :next="$next" :kuesioner="$kuesioner" :data="$data" />
 			@elseif ($step == 3)

@@ -6,7 +6,6 @@ use App\Models\Answer;
 use App\Models\Feedback;
 use App\Models\Kuesioner;
 use App\Models\Responden;
-use App\Models\Village;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -105,8 +104,7 @@ class IndexController extends Controller
             }
 
             if ($step == 1) {
-                $villages = Village::all();
-                return view('pages.public.kuesioner', compact('step', 'totalKuesioner', 'villages'));
+                return view('pages.public.kuesioner', compact('step', 'totalKuesioner'));
             }
 
             if ($step == 2) {
@@ -119,7 +117,6 @@ class IndexController extends Controller
                     'age' => 'required|numeric|min:1|max:122',
                     'education' => 'required',
                     'job' => 'required',
-                    'village' => 'required'
                 ]);
 
                 if ($validator->fails()) {
@@ -181,7 +178,6 @@ class IndexController extends Controller
                 'age' => $request->age,
                 'education' => $request->education,
                 'job' => $request->job,
-                'village_id' => $request->village,
             ]);
 
             if($request->feedback) {

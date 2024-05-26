@@ -106,11 +106,6 @@
 					<td>
 						<table>
 							<tr>
-								<th>Desa</th>
-								<td>:</td>
-								<td>{{ request('village') ?? 'Semua' }}</td>
-							</tr>
-							<tr>
 								<th>Pencarian</th>
 								<td>:</td>
 								<td>{{ request('search') }}</td>
@@ -136,17 +131,12 @@
 			<h5>Responden Menurut Pekerjaan</h5>
 			<img src="{{ 'https://quickchart.io/chart?c=' . urlencode($chartPekerjaanConfig) }}" alt="Chart" class="chart-img" />
 		</div>
-		<div class="chart-container">
-			<h5>Responden Menurut Desa</h5>
-			<img src="{{ 'https://quickchart.io/chart?c=' . urlencode($chartDesaConfig) }}" alt="Chart" class="chart-img" />
-		</div>
 		<table style="margin-top: 50px; width: 100%;">
 			<tr>
 				<td></td>
 				<td style="text-align: center; width: 40%;">
 					<div>Gresik, {{ now()->format('d/m/Y') }}</div>
-					<div style="margin-bottom: 50px;">Kasatlantas</div>
-					<div>Nama Kasatlantas</div>
+					<div style="margin-top: 50px;">KEPALA SATLANTAS</div>
 					<div></div>
 				</td>
 			</tr>

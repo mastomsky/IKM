@@ -79,7 +79,6 @@
 								<div class="px-6 py-6 lg:px-8">
 									<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Filter</h3>
 									<div class="grid grid-cols-1">
-										<a href="{{ route('ikm.index', ['start_date' => now()->format('Y-m-d'), 'end_date' => now()->format('Y-m-d')]) }}" class="mb-2 me-2 rounded-lg border border-blue-700 px-5 py-2.5 text-center text-sm font-medium text-blue-700 hover:bg-blue-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:bg-blue-500 dark:hover:text-white dark:focus:ring-blue-800">Hari ini</a>
 										<a href="{{ route('ikm.index', ['start_date' => now()->startOfWeek()->format('Y-m-d'),'end_date' => now()->endOfWeek()->format('Y-m-d')]) }}" class="mb-2 me-2 rounded-lg border border-blue-700 px-5 py-2.5 text-center text-sm font-medium text-blue-700 hover:bg-blue-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:bg-blue-500 dark:hover:text-white dark:focus:ring-blue-800">Minggu ini</a>
 										<a href="{{ route('ikm.index', ['start_date' => now()->startOfMonth()->format('Y-m-d'),'end_date' => now()->endOfMonth()->format('Y-m-d')]) }}" class="mb-2 me-2 rounded-lg border border-blue-700 px-5 py-2.5 text-center text-sm font-medium text-blue-700 hover:bg-blue-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:bg-blue-500 dark:hover:text-white dark:focus:ring-blue-800">Bulan ini</a>
 										<a href="{{ route('ikm.index', ['start_date' => now()->startOfYear()->format('Y-m-d'),'end_date' => now()->endOfYear()->format('Y-m-d')]) }}" class="mb-2 me-2 rounded-lg border border-blue-700 px-5 py-2.5 text-center text-sm font-medium text-blue-700 hover:bg-blue-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:bg-blue-500 dark:hover:text-white dark:focus:ring-blue-800">Tahun ini</a>
@@ -98,23 +97,11 @@
 						<input type="date" name="end_date" id="end_date" value="{{ request('end_date') }}" class="date block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500">
 						<label for="end_date" class="absolute -top-2 left-3 bg-white px-1 text-[.65rem] text-gray-400">Tanggal Selesai</label>
 					</div>
-					<div class="relative">
-						<x-form.filter action="#" :options="[
-						    (object) [
-						        'name' => 'Semua',
-						        'route' => route('ikm.index', ['filter' => 'Semua', 'filter_by' => 'village']),
-						    ],
-						    ...$sortedVillages,
-						]" />
-						<label for="filter" class="absolute -top-2 left-3 bg-white px-1 text-[.65rem] text-gray-400">Desa</label>
-					</div>
+					
 				</form>
 			</div>
 			<dl class="mb-5 grid grid-cols-3 divide-x divide-gray-200 text-sm text-gray-900 dark:divide-gray-700 dark:text-white">
-				<div class="flex flex-col">
-					<dt class="mb-1 text-gray-500 dark:text-gray-400">Desa</dt>
-					<dd class="font-semibold">{{ request('filter') ?? 'Semua' }}</dd>
-				</div>
+				
 				<div class="flex flex-col pl-5">
 					<dt class="mb-1 text-gray-500 dark:text-gray-400">Tanggal Mulai</dt>
 					<dd class="font-semibold">{{ request('start_date') }}</dd>

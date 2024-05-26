@@ -51,16 +51,6 @@
 			</div>
 			<div class="py-6" id="grafik-berdasarkan-jawaban"></div>
 		</div>
-		<div class="col-span-2 rounded-lg border bg-white p-4 shadow dark:bg-gray-800 md:p-6">
-			<div class="mb-3 flex justify-between">
-				<div class="flex items-center justify-center">
-					<h5 class="pr-1 text-xl font-bold leading-none text-gray-900 dark:text-white">Grafik Jawaban Kuesioner Harian</h5>
-				</div>
-			</div>
-			<div id="grafik-jawaban-harian"></div>
-		</div>
-	</div>
-	<div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-3">
 		<div class="rounded-lg border bg-white p-4 shadow dark:bg-gray-800 md:p-6">
 			<div class="mb-3 flex justify-between">
 				<div class="flex items-center justify-center">
@@ -69,6 +59,17 @@
 			</div>
 			<div class="py-6" id="grafik-berdasarkan-jenis-kelamin"></div>
 		</div>
+		<div class="rounded-lg border bg-white p-4 shadow dark:bg-gray-800 md:p-6">
+			<div class="mb-3 flex justify-between">
+				<div class="flex items-center justify-center">
+					<h5 class="pr-1 text-xl font-bold leading-none text-gray-900 dark:text-white">Grafik Responden Berdasarkan Pekerjaan</h5>
+				</div>
+			</div>
+			<div class="py-6" id="grafik-berdasarkan-pekerjaan"></div>
+		</div>
+	</div>
+	<div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-3">
+		
 		<div class="rounded-lg border bg-white p-4 shadow dark:bg-gray-800 md:p-6">
 			<div class="mb-3 flex justify-between">
 				<div class="flex items-center justify-center">
@@ -86,25 +87,6 @@
 			<div class="py-6" id="grafik-berdasarkan-pendidikan"></div>
 		</div>
 	</div>
-	<div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-3">
-		<div class="rounded-lg border bg-white p-4 shadow dark:bg-gray-800 md:p-6">
-			<div class="mb-3 flex justify-between">
-				<div class="flex items-center justify-center">
-					<h5 class="pr-1 text-xl font-bold leading-none text-gray-900 dark:text-white">Grafik Responden Berdasarkan Pekerjaan</h5>
-				</div>
-			</div>
-			<div class="py-6" id="grafik-berdasarkan-pekerjaan"></div>
-		</div>
-		<div class="col-span-2 rounded-lg border bg-white p-4 shadow dark:bg-gray-800 md:p-6">
-			<div class="mb-3 flex justify-between">
-				<div class="flex items-center justify-center">
-					<h5 class="pr-1 text-xl font-bold leading-none text-gray-900 dark:text-white">Grafik Responden Berdasarkan Desa</h5>
-				</div>
-			</div>
-			<div class="py-6" id="grafik-berdasarkan-desa"></div>
-		</div>
-	</div>
-
 	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 	<script>
 		// ApexCharts options and config

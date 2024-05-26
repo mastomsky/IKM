@@ -13,15 +13,9 @@ class UserSeeder extends Seeder
     {
     
             User::factory()->create([
-            'name' => 'Super IKM',
-            'email' => 'toomsgege@gmail.com',
-            'role_id' => '1',
-            'password' => Hash::make('admin123'),
-            'avatar' => 'https://www.gravatar.com/avatar/'.hash('sha256', strtolower(trim('admin@ikm.test'))),
-
             'name' => 'Admin IKM',
             'email' => 'admin@gmail.com',
-            'role_id' => '2',
+            'role_id' => 'admin',
             'password' => Hash::make('admin123'),
             'avatar' => 'https://www.gravatar.com/avatar/'.hash('sha256', strtolower(trim('admin@ikm.test')))
             ]);

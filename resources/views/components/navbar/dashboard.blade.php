@@ -15,9 +15,9 @@
             </path>
           </svg>
         </button>
-        <a href="{{ route('dasbor') }}" class="flex ml-2 md:mr-24">
+        <a href="{{ route('dashboard') }}" class="flex ml-2 md:mr-24">
           <img src="{{ asset('assets/logo.png') }}" class="h-8 mr-3" alt="Logo Satlantas" />
-          <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">{{ $appName }}</span>
+          <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">IKM SATLANTAS</span>
         </a>
       </div>
       <div class="flex items-center">
@@ -27,7 +27,7 @@
               class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
               aria-expanded="false" data-dropdown-toggle="dropdown-user">
               <span class="sr-only">Open user menu</span>
-              <img class="w-8 h-8 rounded-full" src="{{ auth()->user()->avatar }}"
+              <img class="w-8 h-8 rounded-full" src="{{ asset('assets/user/'. auth()->user()->avatar) }}"
                 alt="user photo">
             </button>
           </div>
